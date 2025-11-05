@@ -1,0 +1,15 @@
+{
+  "python.venvPath": "${workspaceFolder}/.venv",
+  "editor.formatOnSave": true,
+  "python.testing.pytestArgs": ["apps/users-service/tests"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestPath": "${workspaceFolder}/.venv/Scripts/pytest",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "isort.args": ["--profile", "black"]
+}
