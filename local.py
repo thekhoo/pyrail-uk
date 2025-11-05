@@ -2,7 +2,6 @@ import json
 import os
 from pprint import pprint
 
-import boto3
 from dotenv import load_dotenv
 
 from pyrail.NationalRail import NationalRailClient
