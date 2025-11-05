@@ -1,0 +1,30 @@
+[project]
+name = "pyrail-uk"
+version = "0.1.0"
+description = "Python SDK for dealing with the National Rail API"
+authors = [
+  { name = "Christopher Khoo", email = "khoojinnwei@gmail.com" },
+]
+dependencies = []
+requires-python = "~=3.13"
+
+[project.urls]
+repository = "https://github.com/thekhoo/pyrail-uk"
+
+[project.optional-dependencies]
+development = [
+  'pytest',
+  'pytest-sugar',
+  # linters
+  'flake8',
+  'black',
+  'isort'
+]
+local=["boto3"]
+
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[tool.black]
+line-length = 120
