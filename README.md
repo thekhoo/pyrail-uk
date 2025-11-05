@@ -4,4 +4,4 @@ An easier way to deal with the National Rail API
 
 ## Supported APIs
 
-* <TBC>
+- Departure Board with Details

@@ -1,0 +1,835 @@
+{
+  "trainServices": [
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "22:24",
+              "et": "Cancelled",
+              "isCancelled": true,
+              "length": 0,
+              "detachFront": false,
+              "cancelReason": "This service has been cancelled because of trespassers on the railway",
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": true,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Great Malvern",
+          "crs": "GMV",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "currentDestinations": [
+        {
+          "locationName": "Reading",
+          "crs": "RDG",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW746800",
+      "std": "21:56",
+      "etd": "Cancelled",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": true,
+      "filterLocationCancelled": true,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "cancelReason": "This service has been cancelled because of trespassers on the railway",
+      "serviceID": "2279010RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "22:29",
+              "et": "22:40",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "delayReason": "This service has been delayed by a late running train being in front of this one",
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Paignton",
+          "crs": "PGN",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "22:05",
+      "etd": "22:19",
+      "platform": "11A",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "delayReason": "This service has been delayed by a late running train being in front of this one",
+      "serviceID": "2278132RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "22:35",
+              "et": "Cancelled",
+              "isCancelled": true,
+              "length": 0,
+              "detachFront": false,
+              "cancelReason": "This service has been cancelled because of more trains than usual needing repairs at the same time",
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Exeter St Davids",
+          "crs": "EXD",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW446800",
+      "std": "22:12",
+      "etd": "Cancelled",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": true,
+      "filterLocationCancelled": true,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "cancelReason": "This service has been cancelled because of more trains than usual needing repairs at the same time",
+      "serviceID": "2278063RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Twyford",
+              "crs": "TWY",
+              "st": "22:17",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Maidenhead",
+              "crs": "MAI",
+              "st": "22:24",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Slough",
+              "crs": "SLO",
+              "st": "22:31",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "22:52",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Didcot Parkway",
+          "crs": "DID",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW463800",
+      "std": "22:12",
+      "etd": "On time",
+      "platform": "15A",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "2280290RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "22:46",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Newbury",
+          "crs": "NBY",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW243000",
+      "std": "22:20",
+      "etd": "On time",
+      "platform": "11A",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "2278626RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "22:56",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Oxford",
+          "crs": "OXF",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW747000",
+      "std": "22:26",
+      "etd": "On time",
+      "platform": "12A",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "2276682RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Twyford",
+              "crs": "TWY",
+              "st": "22:33",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Maidenhead",
+              "crs": "MAI",
+              "st": "22:40",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Taplow",
+              "crs": "TAP",
+              "st": "22:43",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Burnham",
+              "crs": "BNM",
+              "st": "22:46",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Slough",
+              "crs": "SLO",
+              "st": "22:50",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Langley",
+              "crs": "LNY",
+              "st": "22:54",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Iver",
+              "crs": "IVR",
+              "st": "22:56",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "West Drayton",
+              "crs": "WDT",
+              "st": "22:59",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Hayes & Harlington",
+              "crs": "HAY",
+              "st": "23:04",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Southall",
+              "crs": "STL",
+              "st": "23:07",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Ealing Broadway",
+              "crs": "EAL",
+              "st": "23:13",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "23:24",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bond Street",
+              "crs": "BDS",
+              "st": "23:30",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Tottenham Court Road",
+              "crs": "TCR",
+              "st": "23:32",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Farringdon",
+              "crs": "ZFD",
+              "st": "23:35",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "London Liverpool Street",
+              "crs": "LST",
+              "st": "23:38",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Whitechapel",
+              "crs": "ZLW",
+              "st": "23:40",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Canary Wharf (Elizabeth line)",
+              "crs": "CWX",
+              "st": "23:44",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Custom House",
+              "crs": "CUS",
+              "st": "23:48",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Woolwich (Elizabeth line)",
+              "crs": "WWC",
+              "st": "23:52",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Abbey Wood",
+              "crs": "ABW",
+              "st": "23:58",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Reading",
+          "crs": "RDG",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Abbey Wood",
+          "crs": "ABW",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "22:28",
+      "etd": "On time",
+      "platform": "14",
+      "operator": "Elizabeth Line",
+      "operatorCode": "XR",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "2276860RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "23:01",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Cheltenham Spa",
+          "crs": "CNM",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW343200",
+      "std": "22:36",
+      "etd": "On time",
+      "platform": "10",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "2278779RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Twyford",
+              "crs": "TWY",
+              "st": "22:46",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Maidenhead",
+              "crs": "MAI",
+              "st": "22:52",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Slough",
+              "crs": "SLO",
+              "st": "22:59",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "23:28",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Reading",
+          "crs": "RDG",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW463900",
+      "std": "22:40",
+      "etd": "On time",
+      "platform": "15A",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "2278237RDNGSTN_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "London Paddington",
+              "crs": "PAD",
+              "st": "23:17",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Swansea",
+          "crs": "SWA",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "London Paddington",
+          "crs": "PAD",
+          "assocIsCancelled": false
+        }
+      ],
+      "rsid": "GW646400",
+      "std": "22:46",
+      "etd": "On time",
+      "platform": "10",
+      "operator": "Great Western Railway",
+      "operatorCode": "GW",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "2276679RDNGSTN_"
+    }
+  ],
+  "Xmlns": {
+    "Count": 8
+  },
+  "generatedAt": "2025-11-05T22:09:51.9271655+00:00",
+  "locationName": "Reading",
+  "crs": "RDG",
+  "filterLocationName": "London Paddington",
+  "filtercrs": "PAD",
+  "filterType": "to",
+  "nrccMessages": [
+    {
+      "Value": "\nTrains running to / from and through Banbury may be cancelled, delayed by up to 30 minutes or revised. Latest information can be found in <a href=\"https://www.nationalrail.co.uk/service-disruptions/banbury-20251105/\">Status and Disruptions.</a>"
+    }
+  ],
+  "platformAvailable": true,
+  "areServicesAvailable": true
+}

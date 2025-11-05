@@ -1,18 +1,28 @@
+import json
+import os
+from pprint import pprint
+
 import boto3
+from dotenv import load_dotenv
 
 from pyrail.NationalRail import NationalRailClient
 
+load_dotenv()
+
 
 def get_national_rail_token():
-    client = boto3.client("ssm")
-    response = client.get_parameter(Name="/development/choo-choo-bot/app/darwin/departure-token", WithDecryption=True)
-    return response["Parameter"]["Value"]
+    return os.environ.get("NATIONAL_RAIL_TOKEN")
 
 
 def main():
     token = get_national_rail_token()
     client = NationalRailClient(token)
-    client.hello()
+    departures = client.get_trains(dep_crs="RDG", arr_crs="PAD")
+
+    pprint(departures)
+
+    with open("depBoard.json", "w") as f:
+        json.dump(departures, f, indent=4)
 
 
 if __name__ == "__main__":

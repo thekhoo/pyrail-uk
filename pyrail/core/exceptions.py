@@ -1,0 +1,2 @@
+class NoTrainsFoundException(Exception):
+    pass

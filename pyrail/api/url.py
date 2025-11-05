@@ -1,6 +1,12 @@
 import typing as t
 
-DEPARTURE_URL = "https://api1.raildata.org.uk/1010-live-departure-board-dep/LDBWS/api/20220120/GetDepBoardWithDetails"
+DEPARTURE_URL = (
+    "https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/GetDepBoardWithDetails"
+)
+
+# NOTE: This is an alternate URL that can be used for less verbose details
+# it also has carriage information but weirdly, only for Elizabeth Line trains...
+# DEPARTURE_URL = "https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/GetDepartureBoard"
 
 
 def get_url(
