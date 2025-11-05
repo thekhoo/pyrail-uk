@@ -20,7 +20,7 @@ development = [
   'black',
   'isort'
 ]
-local=["boto3"]
+local=["boto3", "boto3-stubs[ssm]"]
 
 
 [tool.setuptools.packages.find]
