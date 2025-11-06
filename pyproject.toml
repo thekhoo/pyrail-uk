@@ -30,6 +30,7 @@ development = [
   'isort'
 ]
 local=["boto3", "boto3-stubs[ssm]", "python-dotenv"]
+deploy=["build", "twine"]
 
 
 [tool.setuptools.packages.find]
