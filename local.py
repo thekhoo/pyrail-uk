@@ -4,7 +4,7 @@ from pprint import pprint
 
 from dotenv import load_dotenv
 
-from pyrail.NationalRail import NationalRailClient
+from pyrail_uk.NationalRail import NationalRailClient
 
 load_dotenv()
 
@@ -16,7 +16,7 @@ def get_national_rail_token():
 def main():
     token = get_national_rail_token()
     client = NationalRailClient(token)
-    departures = client.get_trains(dep_crs="RDG", arr_crs="PAD")
+    departures = client.get_trains(dep_crs="RDG", arr_crs="OXF", timeoffset_mins=-60)
 
     pprint(departures)
 

@@ -25,6 +25,7 @@ class CallingPointTypeDef(TypedDict):
     isCancelled: bool
     length: int
     detachFront: bool
+    delayReason: NotRequired[str]
     affectedByDiversion: bool
     rerouteDelay: int
 
@@ -39,6 +40,7 @@ class SubsequentCallingPointsTypeDef(TypedDict):
 class TrainServiceTypeDef(TypedDict):
     serviceID: str
     cancelReason: NotRequired[str]
+    delayReason: NotRequired[str]
     isReverseFormation: bool
     detachFront: bool
     length: int

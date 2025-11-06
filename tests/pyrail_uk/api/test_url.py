@@ -1,4 +1,4 @@
-import pyrail.api.url as url
+import pyrail_uk.api.url as url
 
 
 class Test_Get_URL:
