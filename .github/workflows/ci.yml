@@ -14,8 +14,8 @@ jobs:
           python-version: "3.12"
       - run: |
           pip install -e ".[development]"
-          ruff check .
-          pyrefly check .
+          ruff check
+          pyrefly check
 
   test:
     needs: lint
