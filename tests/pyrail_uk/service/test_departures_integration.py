@@ -64,7 +64,7 @@ class Test_Simplify_Service_Info:
         assert res.eta == "17:30"
 
     def test_when_train_is_delayed(self):
-        res = departures.simplify_service_info(ON_TIME_TRAIN_SERVICE, "RDG")
+        res = departures.simplify_service_info(DELAYED_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.DELAYED
         assert res.status_reason == "No reason provided"
 

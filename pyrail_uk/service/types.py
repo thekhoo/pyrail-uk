@@ -49,3 +49,9 @@ class DepartureServiceResponse:
     # metadata about services
     services: list[TrainService]
     num_services: int
+
+
+@dataclass
+class Station:
+    crs: str
+    name: str

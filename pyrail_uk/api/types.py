@@ -80,3 +80,13 @@ class DepBoardWithDetailsResponseTypeDef(TypedDict):
     nrccMessages: list[NRCCMessagesTypeDef]
     platformAvailable: bool
     trainServices: list[TrainServiceTypeDef]
+
+
+class StationCRSTypeDef(TypedDict):
+    crs: str
+    Value: str
+
+
+class StationListResponseTypeDef(TypedDict):
+    version: str
+    StationList: list[StationCRSTypeDef]
