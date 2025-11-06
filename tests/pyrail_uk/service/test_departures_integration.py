@@ -1,7 +1,5 @@
-import pytest
-
 import pyrail_uk.service.departures as departures
-from pyrail_uk.service.types import TrainService, TrainStatus
+from pyrail_uk.service.types import TrainStatus
 
 from .testutils import MockCallingPoint, MockDepartureData, MockTrainServiceData
 
@@ -59,7 +57,7 @@ class Test_Simplify_Service_Info:
     def test_when_train_is_on_time(self):
         res = departures.simplify_service_info(ON_TIME_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.ON_TIME
-        assert res.status_reason == None
+        assert res.status_reason is None
         assert res.etd == "On time"
         assert res.eta == "17:30"
 
@@ -71,13 +69,13 @@ class Test_Simplify_Service_Info:
     def test_when_train_has_departed(self):
         res = departures.simplify_service_info(DEPARTED_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.DEPARTED
-        assert res.status_reason == None
+        assert res.status_reason is None
         assert res.atd == "17:22"
 
     def test_when_train_has_departed_late(self):
         res = departures.simplify_service_info(DELAYED_DEPARTED_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.DELAYED_DEPARTED
-        assert res.status_reason == None
+        assert res.status_reason is None
         assert res.atd == "17:32"
 
 

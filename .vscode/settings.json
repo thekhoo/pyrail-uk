@@ -1,15 +1,20 @@
 {
   "python.venvPath": "${workspaceFolder}/.venv",
+  "python.linting.enabled": true,
+  "ruff.format.enable": true,
   "editor.formatOnSave": true,
-  "python.testing.pytestArgs": ["."],
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true,
-  "python.testing.pytestPath": "${workspaceFolder}/.venv/Scripts/pytest",
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
-    }
-  },
-  "isort.args": ["--profile", "black"]
+  "isort.args": ["--profile", "black"],
+  "python.pyrefly.displayTypeErrors": "force-on",
+  "python.pyrefly.disabledLanguageServices": [
+    "findReferences",
+    "workspaceSymbol"
+  ],
+  "editor.inlayHints.enabled": "on",
+  "python.defaultInterpreterPath": "/path/to/.venv/bin/python",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.venv": true,
+    "**/build": true,
+    "**/.pytest_cache": true
+  }
 }

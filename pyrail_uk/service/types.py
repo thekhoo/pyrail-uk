@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional, TypedDict
+from typing import Optional
 
 
 class TrainStatus(str, Enum):
@@ -21,7 +21,7 @@ class TrainService:
 
     # train status
     status: TrainStatus
-    status_reason: str
+    status_reason: Optional[str]
 
     # information about the train operator
     operator_code: str
