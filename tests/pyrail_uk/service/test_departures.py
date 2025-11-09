@@ -143,6 +143,27 @@ class Test_Get_STA_And_ETA:
         assert eta == "Cancelled"
 
 
+class Test_Get_Minutes_Diff:
+
+    @pytest.mark.parametrize("etd", ["On time", "Cancelled", "Delayed", None])
+    def test_should_return_zero_if_etd_is_not_a_time_value(self, etd: str):
+        assert departures.get_minutes_diff("17:30", etd) == 0
+
+    @pytest.mark.parametrize(
+        "etd, expected_mins",
+        [
+            ["17:32", 2],
+            ["18:32", 62],
+            ["19:00", 90],
+        ],
+    )
+    def test_should_return_the_minute_difference_when_times_are_within_the_same_day(self, etd: str, expected_mins: int):
+        assert departures.get_minutes_diff("17:30", etd) == expected_mins
+
+    def test_should_return_the_minute_difference_when_times_cross_midnight(self):
+        assert departures.get_minutes_diff("23:30", "00:02") == 32
+
+
 class Test_Get_ATD:
 
     @pytest.mark.parametrize("train_status", [TrainStatus.ON_TIME, TrainStatus.DELAYED, TrainStatus.CANCELLED])

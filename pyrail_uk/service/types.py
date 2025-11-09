@@ -38,6 +38,8 @@ class TrainService:
     atd: Optional[str]  # not present if train not departed
     sta: Optional[str]  # not present if train cancelled
     eta: Optional[str]  # not present if train cancelled
+    departure_mins_delayed: Optional[int]
+    arrival_mins_delayed: Optional[int]
 
 
 @dataclass

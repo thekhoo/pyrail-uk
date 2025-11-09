@@ -2,6 +2,7 @@ from typing import Optional
 
 import pyrail_uk.utils.array as array
 from pyrail_uk.api.types import DepBoardWithDetailsResponseTypeDef, TrainServiceTypeDef
+from datetime import time, timedelta, datetime
 
 from .types import DepartureServiceResponse, TrainService, TrainStatus
 
@@ -48,6 +49,31 @@ def get_sta_and_eta(service_info: TrainServiceTypeDef, target_crs: str) -> tuple
     return sta, actual_eta
 
 
+def get_minutes_diff(scheduled: Optional[str], estimated: Optional[str]) -> int:
+    if estimated in [ON_TIME_ETD, "Cancelled", "Delayed"]:
+        return 0
+
+    if scheduled is None or estimated is None:
+        return 0
+
+    s_hour, s_min = scheduled.split(":")
+    e_hour, e_min = estimated.split(":")
+
+    s_time = time(hour=int(s_hour), minute=int(s_min))
+    e_time = time(hour=int(e_hour), minute=int(e_min))
+
+    today = datetime.today().date()
+    s_dt = datetime.combine(today, s_time)
+    e_dt = datetime.combine(today, e_time)
+
+    if e_dt < s_dt:
+        # this means that the estimated has crossed into the next day
+        tomorrow = today + timedelta(days=1)
+        e_dt = datetime.combine(tomorrow, e_time)
+
+    return int((e_dt - s_dt).total_seconds() // 60)
+
+
 def get_atd(service_info: TrainServiceTypeDef, train_status: TrainStatus) -> Optional[str]:
     """Gets the actual time of departure for the train service, if it has departed."""
     if train_status not in [TrainStatus.DEPARTED, TrainStatus.DELAYED_DEPARTED]:
@@ -70,6 +96,8 @@ def simplify_service_info(service_info: TrainServiceTypeDef, target_crs: Optiona
 
     status, reason = get_train_status_and_reason(service_info)
 
+    std = service_info["std"]
+    etd = service_info["etd"]
     atd = get_atd(service_info, status)
     sta, eta = get_sta_and_eta(service_info, target_crs or destination["crs"])  # handle no user destination cases
 
@@ -92,6 +120,8 @@ def simplify_service_info(service_info: TrainServiceTypeDef, target_crs: Optiona
         atd=atd,
         sta=sta,
         eta=eta,
+        departure_mins_delayed=get_minutes_diff(std, etd),
+        arrival_mins_delayed=get_minutes_diff(sta, eta),
     )
 
 
