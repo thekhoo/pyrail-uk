@@ -4,10 +4,10 @@ from pyrail_uk.service.types import TrainStatus
 from .testutils import MockCallingPoint, MockDepartureData, MockTrainServiceData
 
 CALLING_POINTS = [
-    MockCallingPoint("OXF", "16:30"),
-    MockCallingPoint("DID", "17:00"),
-    MockCallingPoint("RDG", "17:30"),
-    MockCallingPoint("PAD", "18:00"),
+    MockCallingPoint("OXF", "16:30", "On time"),
+    MockCallingPoint("DID", "17:00", "On time"),
+    MockCallingPoint("RDG", "17:30", "17:33"),
+    MockCallingPoint("PAD", "18:00", "Cancelled"),
 ]
 
 CANCELLED_TRAIN_SERVICE = (
@@ -59,7 +59,7 @@ class Test_Simplify_Service_Info:
         assert res.status == TrainStatus.ON_TIME
         assert res.status_reason is None
         assert res.etd == "On time"
-        assert res.eta == "17:30"
+        assert res.eta == "17:33"
 
     def test_when_train_is_delayed(self):
         res = departures.simplify_service_info(DELAYED_TRAIN_SERVICE, "RDG")
