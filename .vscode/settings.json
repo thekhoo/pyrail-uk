@@ -9,6 +9,13 @@
     "findReferences",
     "workspaceSymbol"
   ],
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
   "editor.inlayHints.enabled": "on",
   "python.defaultInterpreterPath": "/path/to/.venv/bin/python",
   "files.exclude": {
