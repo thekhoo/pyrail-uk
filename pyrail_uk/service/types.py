@@ -36,6 +36,7 @@ class TrainService:
     std: str
     etd: str
     atd: Optional[str]  # not present if train not departed
+    sta: Optional[str]  # not present if train cancelled
     eta: Optional[str]  # not present if train cancelled
 
 

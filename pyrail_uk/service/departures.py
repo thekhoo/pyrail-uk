@@ -30,17 +30,22 @@ def get_train_status_and_reason(service_info: TrainServiceTypeDef) -> tuple[Trai
     return TrainStatus.DELAYED, service_info.get("delayReason", DEFAULT_DELAY_REASON)
 
 
-def get_eta(service_info: TrainServiceTypeDef, target_crs: str) -> Optional[str]:
+def get_sta_and_eta(service_info: TrainServiceTypeDef, target_crs: str) -> tuple[str, str] | tuple[None, None]:
     if "subsequentCallingPoints" not in service_info:
-        return None
+        return None, None
 
     calling_points = service_info["subsequentCallingPoints"][0]["callingPoint"]
     target_point = array.findfirst(calling_points, lambda cp: cp["crs"] == target_crs)
 
     if not target_point:
-        return None
+        return None, None
 
-    return target_point.get("et")
+    sta = target_point.get("st")
+    eta = target_point.get("et")
+
+    actual_eta = sta if eta == ON_TIME_ETD else eta
+
+    return sta, actual_eta
 
 
 def get_atd(service_info: TrainServiceTypeDef, train_status: TrainStatus) -> Optional[str]:
@@ -66,7 +71,7 @@ def simplify_service_info(service_info: TrainServiceTypeDef, target_crs: Optiona
     status, reason = get_train_status_and_reason(service_info)
 
     atd = get_atd(service_info, status)
-    eta = get_eta(service_info, target_crs or destination["crs"])  # handle no user destination cases
+    sta, eta = get_sta_and_eta(service_info, target_crs or destination["crs"])  # handle no user destination cases
 
     return TrainService(
         # this origin is where the train originated from
@@ -85,6 +90,7 @@ def simplify_service_info(service_info: TrainServiceTypeDef, target_crs: Optiona
         std=service_info["std"],
         etd=service_info["etd"],
         atd=atd,
+        sta=sta,
         eta=eta,
     )
 

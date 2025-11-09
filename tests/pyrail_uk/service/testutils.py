@@ -1,8 +1,9 @@
 class MockCallingPoint:
 
-    def __init__(self, crs: str, et: str):
+    def __init__(self, crs: str, st: str, et: str):
         self.event = {
             "crs": crs,
+            "st": st,
             "et": et,
         }
 
@@ -38,7 +39,7 @@ class MockTrainServiceData:
             "operatorCode": "GW",
             "operator": "Great Western Railway",
             # platform
-            "platform": None,
+            "platform": "3",
             "etd": "On time",
             "std": "14:39",
             "rsid": "GW1234",
@@ -46,7 +47,6 @@ class MockTrainServiceData:
             "futureCancellation": False,
             "futureDelay": False,
             # train information
-            "platform": "3",
             "origin": [{"crs": "OXF", "locationName": "Oxford"}],
             "destination": [{"crs": "PAD", "locationName": "London Paddington"}],
             "currentDestinations": [{"crs": "RDG", "locationName": "Reading"}],
@@ -73,10 +73,6 @@ class MockTrainServiceData:
 
     def set_std(self, std: str):
         self.event["std"] = std
-        return self
-
-    def set_delay_reason(self, reason: str):
-        self.event["delayReason"] = reason
         return self
 
     def set_subsequent_calling_points(self, calling_points: list[MockCallingPoint]):

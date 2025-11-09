@@ -6,10 +6,10 @@ from pyrail_uk.service.types import TrainStatus
 from .testutils import MockCallingPoint, MockTrainServiceData
 
 CALLING_POINTS = [
-    MockCallingPoint("OXF", "16:30"),
-    MockCallingPoint("DID", "17:00"),
-    MockCallingPoint("RDG", "17:30"),
-    MockCallingPoint("PAD", "18:00"),
+    MockCallingPoint("OXF", "16:30", "On time"),
+    MockCallingPoint("DID", "17:00", "On time"),
+    MockCallingPoint("RDG", "17:30", "17:33"),
+    MockCallingPoint("PAD", "18:00", "Cancelled"),
 ]
 
 
@@ -101,27 +101,46 @@ class Test_Get_Train_Status_And_Reason:
             assert reason is None
 
 
-class Test_Get_ETA:
+class Test_Get_STA_And_ETA:
 
     def test_should_return_none_if_no_subsequent_calling_points(self):
         payload = MockTrainServiceData().clear_subsequent_calling_points().build()
-        eta = departures.get_eta(payload, "RDG")
+        sta, eta = departures.get_sta_and_eta(payload, "RDG")
 
+        assert sta is None
         assert eta is None
 
     def test_should_return_none_if_target_crs_not_found(self):
         crs = "LHR"
         payload = MockTrainServiceData().set_subsequent_calling_points(CALLING_POINTS).build()
-        eta = departures.get_eta(payload, crs)
+        sta, eta = departures.get_sta_and_eta(payload, crs)
 
+        assert sta is None
         assert eta is None
 
-    def test_should_return_et_for_target_crs(self):
+    def test_should_return_st_when_et_for_target_crs_is_on_time(self):
+        crs = "DID"
+        payload = MockTrainServiceData().set_subsequent_calling_points(CALLING_POINTS).build()
+        sta, eta = departures.get_sta_and_eta(payload, crs)
+
+        assert sta == "17:00"
+        assert eta == "17:00"
+
+    def test_should_return_et_when_target_crs_is_delayed(self):
         crs = "RDG"
         payload = MockTrainServiceData().set_subsequent_calling_points(CALLING_POINTS).build()
-        eta = departures.get_eta(payload, crs)
+        sta, eta = departures.get_sta_and_eta(payload, crs)
 
-        assert eta == "17:30"
+        assert sta == "17:30"
+        assert eta == "17:33"
+
+    def test_should_return_cancelled_when_target_crs_is_cancelled(self):
+        crs = "PAD"
+        payload = MockTrainServiceData().set_subsequent_calling_points(CALLING_POINTS).build()
+        sta, eta = departures.get_sta_and_eta(payload, crs)
+
+        assert sta == "18:00"
+        assert eta == "Cancelled"
 
 
 class Test_Get_ATD:
