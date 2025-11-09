@@ -1,5 +1,7 @@
 import typing as t
 
+import deprecation
+
 from pyrail_uk.api.departures import NationalRailAPIRequestClient
 from pyrail_uk.api.referencedata import NationalRailReferenceDataRequestClient
 
@@ -7,11 +9,16 @@ from .service.departures import simplify_departures
 from .service.stations import find_crs_by_station_name, find_station_by_crs
 
 
+@deprecation.deprecated(
+    deprecated_in="0.2.0",
+    details="Use the DepartureBoardClient and ReferenceDataClient instead!",
+)
 class NationalRailClient:
-
     def __init__(self, departure_board_token: str, reference_data_token: str):
         self.dep_client = NationalRailAPIRequestClient(departure_board_token)
-        self.ref_data_client = NationalRailReferenceDataRequestClient(reference_data_token)
+        self.ref_data_client = NationalRailReferenceDataRequestClient(
+            reference_data_token
+        )
 
     def get_trains(
         self,
@@ -51,7 +58,9 @@ class NationalRailClient:
         DepartureServiceResponse : The parsed version of the response by the SDK
 
         """
-        res = self.dep_client.get_departures(dep_crs, arr_crs, timeoffset_mins, timewindow_mins)
+        res = self.dep_client.get_departures(
+            dep_crs, arr_crs, timeoffset_mins, timewindow_mins
+        )
 
         # allow users the option to get the full response
         if not simplified:

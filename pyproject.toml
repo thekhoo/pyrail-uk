@@ -1,13 +1,13 @@
 [project]
 name = "pyrail-uk"
-version = "0.1.1"
+version = "0.2.0"
 description = "Python SDK for dealing with the National Rail API"
 readme = "README.md"
 authors = [
   { name = "Christopher Khoo", email = "khoojinnwei@gmail.com" },
 ]
 license = {text = "MIT"}
-dependencies = ["requests", "cachetools"]
+dependencies = ["requests", "cachetools", "deprecation"]
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
