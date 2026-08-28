@@ -59,6 +59,7 @@ build-backend = "setuptools.build_meta"
 branch = "main"
 tag_format = "v{version}"
 commit = false
+push = false
 
 [tool.semantic_release.changelog]
 generate = false

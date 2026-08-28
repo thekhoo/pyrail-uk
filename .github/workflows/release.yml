@@ -36,6 +36,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           python-version: "3.13"
 
+      - name: Push tag
+        if: steps.release.outputs.released == 'true'
+        run: git push origin ${{ steps.release.outputs.tag }}
+
       - name: Publish to PyPI
         if: steps.release.outputs.released == 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
