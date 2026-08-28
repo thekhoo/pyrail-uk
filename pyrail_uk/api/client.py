@@ -8,8 +8,12 @@ logger = logging.getLogger(__name__)
 
 
 class APIClient:
-
-    def __init__(self, token: str, headers: dict | None = None, retry_strategy: Retry | None = None):
+    def __init__(
+        self,
+        token: str,
+        headers: dict | None = None,
+        retry_strategy: Retry | None = None,
+    ):
         self.token = token
         self.session = r.Session()
 

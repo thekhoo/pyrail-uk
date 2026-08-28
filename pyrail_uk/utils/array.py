@@ -54,5 +54,7 @@ def findone(arr: list[T], condition: t.Callable, strict: bool = False) -> T | No
         return None
     else:
         if strict:
-            raise MultipleFoundException("Multiple elements found that satisfy the condition.")
+            raise MultipleFoundException(
+                "Multiple elements found that satisfy the condition."
+            )
         return None

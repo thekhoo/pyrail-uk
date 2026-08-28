@@ -11,11 +11,20 @@ logger = logging.getLogger(__name__)
 
 
 class NationalRailReferenceDataRequestClient(APIClient):
-
-    def __init__(self, token: str, retry_strategy: Retry | None = None, cache_ttl_seconds: int = 300):
+    def __init__(
+        self,
+        token: str,
+        retry_strategy: Retry | None = None,
+        cache_ttl_seconds: int = 300,
+    ):
         super().__init__(
             token,
-            headers={"x-apikey": token, "Accept": "*/*", "User-Agent": "pyrail-sdk", "Origin": "localhost"},
+            headers={
+                "x-apikey": token,
+                "Accept": "*/*",
+                "User-Agent": "pyrail-sdk",
+                "Origin": "localhost",
+            },
             retry_strategy=retry_strategy,
         )
 

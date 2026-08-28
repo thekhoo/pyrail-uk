@@ -1,4 +1,3 @@
-
 from pyrail_uk.api.departures import NationalRailAPIRequestClient
 from pyrail_uk.service.departures import simplify_departures
 

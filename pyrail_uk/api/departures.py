@@ -10,18 +10,29 @@ logger = logging.getLogger(__name__)
 
 
 class NationalRailAPIRequestClient(APIClient):
-
     def __init__(self, token: str, retry_strategy: Retry | None = None):
         super().__init__(
             token,
-            headers={"x-apikey": token, "Accept": "*/*", "User-Agent": "pyrail-sdk", "Origin": "localhost"},
+            headers={
+                "x-apikey": token,
+                "Accept": "*/*",
+                "User-Agent": "pyrail-sdk",
+                "Origin": "localhost",
+            },
             retry_strategy=retry_strategy,
         )
 
     def get_departures(
-        self, dep_crs: str, arr_crs: str | None = None, timeoffset_mins: int = 0, timewindow_mins: int = 120
+        self,
+        dep_crs: str,
+        arr_crs: str | None = None,
+        timeoffset_mins: int = 0,
+        timewindow_mins: int = 120,
     ) -> DepBoardWithDetailsResponseTypeDef:
         url = get_departure_board_url(
-            dep_crs, arr_crs=arr_crs, timeoffset_mins=timeoffset_mins, timewindow_mins=timewindow_mins
+            dep_crs,
+            arr_crs=arr_crs,
+            timeoffset_mins=timeoffset_mins,
+            timewindow_mins=timewindow_mins,
         )
         return self.get(url=url)

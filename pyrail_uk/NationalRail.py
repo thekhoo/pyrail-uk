@@ -1,4 +1,3 @@
-
 import deprecation
 
 from pyrail_uk.api.departures import NationalRailAPIRequestClient
