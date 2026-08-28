@@ -12,7 +12,7 @@ class MultipleFoundException(Exception):
 T = t.TypeVar("T")
 
 
-def findfirst(arr: list[T], condition: t.Callable, strict: bool = False) -> t.Optional[T]:
+def findfirst(arr: list[T], condition: t.Callable, strict: bool = False) -> T | None:
     """Find the first element in an array that satisfies the given condition.
 
     Args:
@@ -33,7 +33,7 @@ def findfirst(arr: list[T], condition: t.Callable, strict: bool = False) -> t.Op
     return None
 
 
-def findone(arr: list[T], condition: t.Callable, strict: bool = False) -> t.Optional[T]:
+def findone(arr: list[T], condition: t.Callable, strict: bool = False) -> T | None:
     """Find exactly one element in an array that satisfies the given condition.
 
     Args:

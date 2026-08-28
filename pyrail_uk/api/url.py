@@ -1,4 +1,3 @@
-import typing as t
 
 DEPARTURE_URL = (
     "https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/GetDepBoardWithDetails"
@@ -13,9 +12,9 @@ STATION_LIST_URL = "https://api1.raildata.org.uk/1010-reference-data1_0/LDBSVWS/
 
 def get_departure_board_url(
     dep_crs: str,
-    arr_crs: t.Optional[str] = None,
-    timeoffset_mins: t.Optional[int] = None,
-    timewindow_mins: t.Optional[int] = None,
+    arr_crs: str | None = None,
+    timeoffset_mins: int | None = None,
+    timewindow_mins: int | None = None,
 ):
     url = f"{DEPARTURE_URL}/{dep_crs}"
     query_params = []

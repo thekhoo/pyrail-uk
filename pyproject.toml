@@ -43,6 +43,9 @@ line-length = 120
 # Directories to scan
 include = ["pyrail_uk/**/*.py"]
 
+[tool.ruff.lint]
+ignore = ["N999"]
+
 [tool.pyrefly]
 project-includes=["pyrail_uk/**/*.py"]
 

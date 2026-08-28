@@ -1,4 +1,3 @@
-import typing as t
 
 import deprecation
 
@@ -23,7 +22,7 @@ class NationalRailClient:
     def get_trains(
         self,
         dep_crs: str,
-        arr_crs: t.Optional[str] = None,
+        arr_crs: str | None = None,
         timeoffset_mins: int = 0,
         timewindow_mins: int = 120,
         simplified: bool = False,

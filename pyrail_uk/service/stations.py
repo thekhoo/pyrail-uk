@@ -1,4 +1,4 @@
-import pyrail_uk.utils.array as array
+from pyrail_uk.utils import array
 
 from ..api.types import StationCRSTypeDef
 from ..core.exceptions import CRSNotFoundException, StationNotFoundException

@@ -1,8 +1,7 @@
-from typing import Optional
+from datetime import datetime, time, timedelta
 
-import pyrail_uk.utils.array as array
 from pyrail_uk.api.types import DepBoardWithDetailsResponseTypeDef, TrainServiceTypeDef
-from datetime import time, timedelta, datetime
+from pyrail_uk.utils import array
 
 from .types import DepartureServiceResponse, TrainService, TrainStatus
 
@@ -11,8 +10,12 @@ DEFAULT_DELAY_REASON = "No reason provided"
 DEFAULT_CANCEL_REASON = "No reason provided"
 
 
-def get_train_status_and_reason(service_info: TrainServiceTypeDef) -> tuple[TrainStatus, Optional[str]]:
-    if service_info.get("isCancelled", False) or service_info.get("filterLocationCancelled", False):
+def get_train_status_and_reason(
+    service_info: TrainServiceTypeDef,
+) -> tuple[TrainStatus, str | None]:
+    if service_info.get("isCancelled", False) or service_info.get(
+        "filterLocationCancelled", False
+    ):
         status = TrainStatus.CANCELLED
         reason = service_info.get("cancelReason", DEFAULT_CANCEL_REASON)
         return status, reason
@@ -31,7 +34,9 @@ def get_train_status_and_reason(service_info: TrainServiceTypeDef) -> tuple[Trai
     return TrainStatus.DELAYED, service_info.get("delayReason", DEFAULT_DELAY_REASON)
 
 
-def get_sta_and_eta(service_info: TrainServiceTypeDef, target_crs: str) -> tuple[str, str] | tuple[None, None]:
+def get_sta_and_eta(
+    service_info: TrainServiceTypeDef, target_crs: str
+) -> tuple[str, str] | tuple[None, None]:
     if "subsequentCallingPoints" not in service_info:
         return None, None
 
@@ -49,7 +54,7 @@ def get_sta_and_eta(service_info: TrainServiceTypeDef, target_crs: str) -> tuple
     return sta, actual_eta
 
 
-def get_minutes_diff(scheduled: Optional[str], estimated: Optional[str]) -> int:
+def get_minutes_diff(scheduled: str | None, estimated: str | None) -> int:
     if estimated in [ON_TIME_ETD, "Cancelled", "Delayed"]:
         return 0
 
@@ -62,19 +67,20 @@ def get_minutes_diff(scheduled: Optional[str], estimated: Optional[str]) -> int:
     s_time = time(hour=int(s_hour), minute=int(s_min))
     e_time = time(hour=int(e_hour), minute=int(e_min))
 
-    today = datetime.today().date()
-    s_dt = datetime.combine(today, s_time)
-    e_dt = datetime.combine(today, e_time)
+    tzinfo = datetime.now().astimezone().tzinfo
+    today = datetime.now().astimezone().date()
+    s_dt = datetime.combine(today, s_time, tzinfo=tzinfo)
+    e_dt = datetime.combine(today, e_time, tzinfo=tzinfo)
 
     if e_dt < s_dt:
         # this means that the estimated has crossed into the next day
         tomorrow = today + timedelta(days=1)
-        e_dt = datetime.combine(tomorrow, e_time)
+        e_dt = datetime.combine(tomorrow, e_time, tzinfo=tzinfo)
 
     return int((e_dt - s_dt).total_seconds() // 60)
 
 
-def get_atd(service_info: TrainServiceTypeDef, train_status: TrainStatus) -> Optional[str]:
+def get_atd(service_info: TrainServiceTypeDef, train_status: TrainStatus) -> str | None:
     """Gets the actual time of departure for the train service, if it has departed."""
     if train_status not in [TrainStatus.DEPARTED, TrainStatus.DELAYED_DEPARTED]:
         return None
@@ -87,7 +93,9 @@ def get_atd(service_info: TrainServiceTypeDef, train_status: TrainStatus) -> Opt
         return service_info.get("std")
 
 
-def simplify_service_info(service_info: TrainServiceTypeDef, target_crs: Optional[str]) -> TrainService:
+def simplify_service_info(
+    service_info: TrainServiceTypeDef, target_crs: str | None
+) -> TrainService:
     origin = service_info["origin"][0]
     destination = service_info["destination"][0]
 
@@ -99,7 +107,9 @@ def simplify_service_info(service_info: TrainServiceTypeDef, target_crs: Optiona
     std = service_info["std"]
     etd = service_info["etd"]
     atd = get_atd(service_info, status)
-    sta, eta = get_sta_and_eta(service_info, target_crs or destination["crs"])  # handle no user destination cases
+    sta, eta = get_sta_and_eta(
+        service_info, target_crs or destination["crs"]
+    )  # handle no user destination cases
 
     return TrainService(
         # this origin is where the train originated from
@@ -135,7 +145,9 @@ def simplify_departures(departures_data: DepBoardWithDetailsResponseTypeDef):
     destination_name = departures_data.get("filterLocationName", None)
 
     services_raw = departures_data.get("trainServices", {})
-    services = [simplify_service_info(service, destination_crs) for service in services_raw]
+    services = [
+        simplify_service_info(service, destination_crs) for service in services_raw
+    ]
     num_services = departures_data.get("Xmlns", {}).get("Count", len(services))
 
     # all the messages are an array of {"Value": "..."}

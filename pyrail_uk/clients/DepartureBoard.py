@@ -1,4 +1,3 @@
-import typing as t
 
 from pyrail_uk.api.departures import NationalRailAPIRequestClient
 from pyrail_uk.service.departures import simplify_departures
@@ -11,7 +10,7 @@ class DepartureBoardClient:
     def get_trains(
         self,
         dep_crs: str,
-        arr_crs: t.Optional[str] = None,
+        arr_crs: str | None = None,
         timeoffset_mins: int = 0,
         timewindow_mins: int = 120,
     ):
@@ -47,7 +46,7 @@ class DepartureBoardClient:
     def get_trains_raw(
         self,
         dep_crs: str,
-        arr_crs: t.Optional[str] = None,
+        arr_crs: str | None = None,
         timeoffset_mins: int = 0,
         timewindow_mins: int = 120,
     ):

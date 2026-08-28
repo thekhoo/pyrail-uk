@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional
 
 
 class TrainStatus(str, Enum):
@@ -21,7 +20,7 @@ class TrainService:
 
     # train status
     status: TrainStatus
-    status_reason: Optional[str]
+    status_reason: str | None
 
     # information about the train operator
     operator_code: str
@@ -32,14 +31,14 @@ class TrainService:
     #       etd - estimated time of departure
     #       atd - actual time of departure
     #       eta - estimated time of arrival
-    platform: Optional[str]  # not present if train cancelled
+    platform: str | None  # not present if train cancelled
     std: str
     etd: str
-    atd: Optional[str]  # not present if train not departed
-    sta: Optional[str]  # not present if train cancelled
-    eta: Optional[str]  # not present if train cancelled
-    departure_mins_delayed: Optional[int]
-    arrival_mins_delayed: Optional[int]
+    atd: str | None  # not present if train not departed
+    sta: str | None  # not present if train cancelled
+    eta: str | None  # not present if train cancelled
+    departure_mins_delayed: int | None
+    arrival_mins_delayed: int | None
 
 
 @dataclass
