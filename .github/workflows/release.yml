@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    name: CI
+    uses: thekhoo/github-actions-shared/.github/workflows/python-ci.yml@main
+    with:
+      linting-python-version: "3.13"
+      pytest-python-versions: '["3.11", "3.12", "3.13", "3.14"]'
+      lint-directories: "pyrail_uk/ tests/"
+      use-ruff: true
+      use-pyrefly: true
+      test-directories: "tests/"
+
+  release:
+    name: Semantic Release
+    needs: ci
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run semantic release
+        id: release
+        uses: thekhoo/github-actions-shared/.github/actions/python-semantic-release@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          python-version: "3.13"
+
+      - name: Publish to PyPI
+        if: steps.release.outputs.released == 'true'
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Publish GitHub Release
+        if: steps.release.outputs.released == 'true'
+        uses: thekhoo/github-actions-shared/.github/actions/github-publish-release@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.release.outputs.tag }}

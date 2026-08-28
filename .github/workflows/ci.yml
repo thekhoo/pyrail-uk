@@ -5,29 +5,13 @@ on:
     branches: ["main"]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: |
-          pip install -e ".[development]"
-          ruff check
-          pyrefly check
-
-  test:
-    needs: lint
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11", "3.12", "3.13"]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-      - run: |
-          pip install -e '.[development]'
-          pytest
+  lint-and-test:
+    name: CI
+    uses: thekhoo/github-actions-shared/.github/workflows/python-ci.yml@main
+    with:
+      linting-python-version: "3.13"
+      pytest-python-versions: '["3.11", "3.12", "3.13", "3.14"]'
+      lint-directories: "pyrail_uk/ tests/"
+      use-ruff: true
+      use-pyrefly: true
+      test-directories: "tests/"
