@@ -18,17 +18,17 @@ classifiers = [
 [project.urls]
 repository = "https://github.com/thekhoo/pyrail-uk"
 
-[project.optional-dependencies]
-development = [
+[dependency-groups]
+dev = [
   # unit tests
   'pytest',
   'pytest-sugar',
   # linters
   'pyrefly',
   'ruff',
-  'black',
-  'isort'
 ]
+
+[project.optional-dependencies]
 local=["boto3", "boto3-stubs[ssm]", "python-dotenv"]
 deploy=["build", "twine"]
 

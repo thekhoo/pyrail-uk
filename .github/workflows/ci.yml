@@ -1,17 +1,35 @@
 name: CI
 
 on:
+  push:
+    tags: ["v*"]
   pull_request:
-    branches: ["main"]
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  lint-and-test:
-    name: CI
-    uses: thekhoo/github-actions-shared/.github/workflows/python-ci.yml@main
-    with:
-      linting-python-version: "3.13"
-      pytest-python-versions: '["3.11", "3.12", "3.13", "3.14"]'
-      lint-directories: "pyrail_uk/ tests/"
-      use-ruff: true
-      use-pyrefly: true
-      test-directories: "tests/"
+  lint:
+    name: PR Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Python quality checks
+        uses: thekhoo/github-actions-shared/.github/actions/python-linting@main
+        with:
+          python-version: 3.13
+          directories: datagovmy/ tests/
+          use-ruff: true
+          use-pyrefly: true
+
+  test:
+    name: PR Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.13", "3.14"]
+    steps:
+      - name: Run Python quality checks
+        uses: thekhoo/github-actions-shared/.github/actions/python-pytest@main
+        with:
+          python-version: ${{ matrix.python-version }}
+          test-directories: tests/
