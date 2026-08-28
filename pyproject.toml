@@ -1,6 +1,6 @@
 [project]
 name = "pyrail-uk"
-version = "0.2.0"
+dynamic = ["version"]
 description = "Python SDK for dealing with the National Rail API"
 readme = "README.md"
 authors = [
@@ -50,5 +50,7 @@ ignore = ["N999"]
 project-includes=["pyrail_uk/**/*.py"]
 
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools>=42", "wheel", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
