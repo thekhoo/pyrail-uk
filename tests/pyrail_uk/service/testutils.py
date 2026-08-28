@@ -78,9 +78,12 @@ class MockTrainServiceData:
     def set_subsequent_calling_points(self, calling_points: list[MockCallingPoint]):
         self.event["subsequentCallingPoints"] = [
             {
+                # pyrefly: ignore [bad-assignment]
                 "callingPoint": [cp.build() for cp in calling_points],
                 "serviceType": "train",
+                # pyrefly: ignore [bad-assignment]
                 "serviceChangeRequired": False,
+                # pyrefly: ignore [bad-assignment]
                 "assocIsCancelled": False,
             }
         ]

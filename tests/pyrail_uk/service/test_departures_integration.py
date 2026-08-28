@@ -39,6 +39,7 @@ class Test_Simplify_Service_Info:
 
     # test general properties
     def test_returns_non_service_related_fields_correctly(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_service_info(ON_TIME_TRAIN_SERVICE, "RDG")
 
         assert res.train_origin == "Oxford"
@@ -50,11 +51,13 @@ class Test_Simplify_Service_Info:
         assert res.platform == "3"
 
     def test_when_train_is_cancelled(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_service_info(CANCELLED_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.CANCELLED
         assert res.status_reason == "more trains than usual needing repairs"
 
     def test_when_train_is_on_time(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_service_info(ON_TIME_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.ON_TIME
         assert res.status_reason is None
@@ -62,17 +65,20 @@ class Test_Simplify_Service_Info:
         assert res.eta == "17:33"
 
     def test_when_train_is_delayed(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_service_info(DELAYED_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.DELAYED
         assert res.status_reason == "No reason provided"
 
     def test_when_train_has_departed(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_service_info(DEPARTED_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.DEPARTED
         assert res.status_reason is None
         assert res.atd == "17:22"
 
     def test_when_train_has_departed_late(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_service_info(DELAYED_DEPARTED_TRAIN_SERVICE, "RDG")
         assert res.status == TrainStatus.DELAYED_DEPARTED
         assert res.status_reason is None
@@ -96,6 +102,7 @@ DEPARTURE_INFO_NO_TRAINS = (
 class Test_Simplify_Departures:
 
     def test_when_no_trains_available(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_departures(DEPARTURE_INFO_NO_TRAINS)
         assert res.origin_crs == "RDG"
         assert res.origin == "Reading"
@@ -105,6 +112,7 @@ class Test_Simplify_Departures:
         assert res.services == []
 
     def test_when_trains_are_available(self):
+        # pyrefly: ignore [bad-argument-type]
         res = departures.simplify_departures(DEPARTURE_INFO_TRAINS_AVAILABLE)
         assert res.origin_crs == "RDG"
         assert res.origin == "Reading"
