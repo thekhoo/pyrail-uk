@@ -60,6 +60,7 @@ branch = "main"
 tag_format = "v{version}"
 commit = false
 push = false
+build_command = "pip install uv && uv build"
 
 [tool.semantic_release.changelog]
 generate = false
