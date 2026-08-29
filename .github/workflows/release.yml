@@ -65,6 +65,8 @@ jobs:
     needs: release
     environment: production
     if: ${{ needs.release.outputs.released == 'true' }}
+    permissions:
+      id-token: write
     steps:
       - name: Download | Distribution Artifacts
         uses: actions/download-artifact@v8.0.1
