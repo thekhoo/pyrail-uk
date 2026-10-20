@@ -10,7 +10,12 @@ logger = logging.getLogger(__name__)
 
 
 class NationalRailAPIRequestClient(APIClient):
-    def __init__(self, token: str, retry_strategy: Retry | None = None):
+    def __init__(
+        self,
+        token: str,
+        retry_strategy: Retry | None = None,
+        timeout: float | None = None,
+    ):
         super().__init__(
             token,
             headers={
@@ -20,6 +25,7 @@ class NationalRailAPIRequestClient(APIClient):
                 "Origin": "localhost",
             },
             retry_strategy=retry_strategy,
+            timeout=timeout,
         )
 
     def get_departures(
