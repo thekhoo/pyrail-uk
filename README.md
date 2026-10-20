@@ -53,8 +53,9 @@ conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
 
 1. Each push to `main` updates a release PR that bumps the version in
    `pyproject.toml` and writes `CHANGELOG.md`.
-2. Merge the release PR when you want to release. release-please tags the release and
-   creates the GitHub Release.
+2. The release PR turns on auto-merge, so it merges once its required checks and review
+   rules are met. release-please then tags the release and creates the GitHub Release.
+   (To release by hand instead, remove `auto-merge: true` from `release.yml`.)
 3. `pypi-release.yml` starts from that release. To publish a tag again, run `PyPI Release` by
    hand and enter the tag.
 

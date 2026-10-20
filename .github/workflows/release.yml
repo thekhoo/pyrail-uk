@@ -18,5 +18,6 @@ jobs:
     uses: thekhoo/github-actions-shared/.github/workflows/github-tag-release.yml@main
     with:
       app-id: ${{ vars.RELEASE_APP_ID }}
+      auto-merge: true
     secrets:
       private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
