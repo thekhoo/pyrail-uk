@@ -49,7 +49,7 @@ conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
 |----------|-----------|------|
 | `ci.yml` | pull request | commit-message check, then `checks.yml` |
 | `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then `github-tag-release` (release-please, from `github-actions-shared`) |
-| `publish.yml` | a GitHub Release is published | builds the tag and publishes it to PyPI |
+| `publish.yml` | a GitHub Release is published | calls `python-pypi-publish` (from `github-actions-shared`) to build the tag and publish it to PyPI |
 
 1. Each push to `main` updates a release PR that bumps the version in
    `pyproject.toml` and writes `CHANGELOG.md`.
