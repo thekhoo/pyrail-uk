@@ -48,7 +48,7 @@ conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
 | Workflow | Starts on | Does |
 |----------|-----------|------|
 | `ci.yml` | pull request | commit-message check, then `checks.yml` |
-| `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then release-please |
+| `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then `github-tag-release` (release-please, from `github-actions-shared`) |
 | `publish.yml` | a GitHub Release is published | builds the tag and publishes it to PyPI |
 
 1. Each push to `main` updates a release PR that bumps the version in
