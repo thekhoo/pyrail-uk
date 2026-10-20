@@ -7,7 +7,13 @@ authors = [
   { name = "Christopher Khoo", email = "khoojinnwei@gmail.com" },
 ]
 license = {text = "MIT"}
-dependencies = ["requests", "cachetools", "deprecation"]
+dependencies = [
+  "requests~=2.32",
+  "cachetools~=5.3",
+  "deprecation~=2.1",
+  "tenacity~=9.0",
+  "pydantic~=2.9",
+]
 requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -26,6 +32,7 @@ dev = [
   # linters
   'pyrefly',
   'ruff',
+  "python-dotenv"
 ]
 
 [project.optional-dependencies]
