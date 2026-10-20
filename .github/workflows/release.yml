@@ -19,4 +19,9 @@ jobs:
   deploy:
     name: Deploy to PyPi
     needs: ci
+    # the reusable workflow's jobs request these; a caller on the default read-only
+    # token fails at startup if it does not grant at least as much
+    permissions:
+      contents: write
+      id-token: write
     uses: thekhoo/github-actions-shared/.github/workflows/python-pypi-deploy.yml@main
