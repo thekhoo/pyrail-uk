@@ -1,0 +1,57 @@
+{
+    "serviceAttributesDetails": {
+        "date_of_service": "2026-08-29",
+        "toc_code": "VT",
+        "rid": "202608298733695",
+        "locations": [
+            {
+                "location": "EUS",
+                "gbtt_ptd": "0833",
+                "gbtt_pta": "",
+                "actual_td": "0833",
+                "actual_ta": "",
+                "late_canc_reason": ""
+            },
+            {
+                "location": "STA",
+                "gbtt_ptd": "0950",
+                "gbtt_pta": "0949",
+                "actual_td": "1003",
+                "actual_ta": "0959",
+                "late_canc_reason": "895"
+            },
+            {
+                "location": "CRE",
+                "gbtt_ptd": "1010",
+                "gbtt_pta": "1008",
+                "actual_td": "1022",
+                "actual_ta": "1019",
+                "late_canc_reason": "895"
+            },
+            {
+                "location": "WML",
+                "gbtt_ptd": "1026",
+                "gbtt_pta": "1025",
+                "actual_td": "1038",
+                "actual_ta": "1037",
+                "late_canc_reason": "895"
+            },
+            {
+                "location": "SPT",
+                "gbtt_ptd": "1036",
+                "gbtt_pta": "1035",
+                "actual_td": "1048",
+                "actual_ta": "1045",
+                "late_canc_reason": "895"
+            },
+            {
+                "location": "MAN",
+                "gbtt_ptd": "",
+                "gbtt_pta": "1044",
+                "actual_td": "",
+                "actual_ta": "1059",
+                "late_canc_reason": "895"
+            }
+        ]
+    }
+}

@@ -16,6 +16,7 @@ class NationalRailReferenceDataRequestClient(APIClient):
         token: str,
         retry_strategy: Retry | None = None,
         cache_ttl_seconds: int = 300,
+        timeout: float | None = None,
     ):
         super().__init__(
             token,
@@ -26,6 +27,7 @@ class NationalRailReferenceDataRequestClient(APIClient):
                 "Origin": "localhost",
             },
             retry_strategy=retry_strategy,
+            timeout=timeout,
         )
 
         self.cache = TTLCache(maxsize=1, ttl=float(cache_ttl_seconds))
