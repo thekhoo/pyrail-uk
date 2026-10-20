@@ -2,7 +2,7 @@ name: PyPI Release
 
 # Starts once release-please has tagged a release. Publishes that tag to PyPI.
 # The PyPI trusted publisher must name this file (pypi-release.yml) and the environment
-# (production, the default of python-pypi-publish).
+# (production).
 on:
   release:
     types: [published]
@@ -14,10 +14,16 @@ on:
 
 jobs:
   publish:
-    name: Publish
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    # must match the environment on the PyPI trusted publisher
+    environment: production
     permissions:
       contents: read
       id-token: write
-    uses: thekhoo/github-actions-shared/.github/workflows/python-pypi-publish.yml@main
-    with:
-      ref: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      # An action, not a reusable workflow: PyPI trusted publishing rejects reusable
+      # workflows from another repository.
+      - uses: thekhoo/github-actions-shared/.github/actions/python-pypi-publish@main
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
