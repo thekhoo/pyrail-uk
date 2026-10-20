@@ -40,6 +40,31 @@ An easier way to deal with the National Rail API
 Times are `datetime.time`; blank values from the API (e.g. no arrival at the origin,
 or no actuals for a cancelled call) become `None`.
 
+## FIND HISTORIC JOURNEYS
+
+```python
+from datetime import datetime
+
+journeys = client.find_journeys(
+    "EUS", "MAN", datetime(2026, 8, 28, 8, 0), datetime(2026, 8, 31, 12, 0)
+)
+```
+
+`HistoricServiceClient.find_journeys(origin, destination, start_dt, end_dt)` combines both
+endpoints and returns `HistoricJourney`s sorted by scheduled departure. Stations are CRS codes
+and the window applies to the scheduled departure from `origin`.
+
+- `serviceMetrics` is queried for the RIDs, split by day type so the first and last days use
+  the exact start/end times.
+- `serviceDetails` is then called **once per RID** for the real date and actual times, so wide
+  ranges make many requests. They run one at a time by default; pass `use_threads=True` (and optionally
+  `max_workers`) to use a thread pool, though it was slower than sequential in live testing.
+  All requests go through the shared `BaseRequestClient` (`pyrail_uk.utils.request`), which
+  retries 429 and 5xx responses with exponential backoff.
+- Each journey has scheduled/actual departure and arrival datetimes, `departure_delay_mins`,
+  `arrival_delay_mins` (`None` if cancelled), `cancelled` and `reason_code`.
+- Bank holidays are not special-cased; the API's own day-type handling applies.
+
 ## Releasing
 
 Releases use [release-please](https://github.com/googleapis/release-please). Use
