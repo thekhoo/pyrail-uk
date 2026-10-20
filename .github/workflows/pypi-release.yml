@@ -1,7 +1,7 @@
-name: Publish
+name: PyPI Release
 
 # Starts once release-please has tagged a release. Publishes that tag to PyPI.
-# The PyPI trusted publisher must name this file (publish.yml) and the environment
+# The PyPI trusted publisher must name this file (pypi-release.yml) and the environment
 # (production, the default of python-pypi-publish).
 on:
   release:

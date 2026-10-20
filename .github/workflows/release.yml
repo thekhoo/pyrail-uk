@@ -2,7 +2,7 @@ name: Release
 
 # On merge to main: run the same checks as CI, then github-tag-release (release-please)
 # updates the release PR. When that PR is merged, it tags the release and creates the
-# GitHub Release. publish.yml starts from that release.
+# GitHub Release. pypi-release.yml starts from that release.
 on:
   push:
     branches: [main]

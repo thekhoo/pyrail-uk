@@ -49,16 +49,16 @@ conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
 |----------|-----------|------|
 | `ci.yml` | pull request | commit-message check, then `checks.yml` |
 | `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then `github-tag-release` (release-please, from `github-actions-shared`) |
-| `publish.yml` | a GitHub Release is published | calls `python-pypi-publish` (from `github-actions-shared`) to build the tag and publish it to PyPI |
+| `pypi-release.yml` | a GitHub Release is published | calls `python-pypi-publish` (from `github-actions-shared`) to build the tag and publish it to PyPI |
 
 1. Each push to `main` updates a release PR that bumps the version in
    `pyproject.toml` and writes `CHANGELOG.md`.
 2. Merge the release PR when you want to release. release-please tags the release and
    creates the GitHub Release.
-3. `publish.yml` starts from that release. To publish a tag again, run `Publish` by
+3. `pypi-release.yml` starts from that release. To publish a tag again, run `PyPI Release` by
    hand and enter the tag.
 
-The PyPI trusted publisher must name the workflow `publish.yml` and the environment
+The PyPI trusted publisher must name the workflow `pypi-release.yml` and the environment
 `production`.
 
 The workflows sign in as the `thekhoo-actions-writer-agent` GitHub App, using the
