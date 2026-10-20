@@ -3,18 +3,44 @@ name: Release
 # On merge to main: run the same checks as CI, then github-tag-release (release-please)
 # updates the release PR. When that PR is merged, it tags the release and creates the
 # GitHub Release. pypi-release.yml starts from that release.
+#
+# Merging the release PR pushes to main and starts this workflow again. That run only
+# needs to tag the release: the PR already passed its checks, and the commit only changes
+# the version files. So the checks are skipped for it and github-tag-release still runs.
 on:
   push:
     branches: [main]
 
 jobs:
+  detect:
+    name: Detect release commit
+    runs-on: ubuntu-latest
+    outputs:
+      is-release-commit: ${{ steps.detect.outputs.is-release-commit }}
+    steps:
+      - id: detect
+        env:
+          MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          # release-please titles its PR "chore(main): release <version>"
+          if [[ "$MESSAGE" == "chore(main): release "* ]]; then
+            echo "is-release-commit=true" >> "$GITHUB_OUTPUT"
+            echo "Release commit: skipping the checks"
+          else
+            echo "is-release-commit=false" >> "$GITHUB_OUTPUT"
+          fi
+
   checks:
     name: Main
+    needs: detect
+    if: ${{ needs.detect.outputs.is-release-commit != 'true' }}
     uses: ./.github/workflows/checks.yml
 
   tag-release:
     name: Tag Release
-    needs: checks
+    needs: [detect, checks]
+    # run when the checks passed or were skipped, but not when they failed
+    if: ${{ !cancelled() && needs.detect.result == 'success' && contains(fromJSON('["success", "skipped"]'), needs.checks.result) }}
     uses: thekhoo/github-actions-shared/.github/workflows/github-tag-release.yml@main
     with:
       app-id: ${{ vars.RELEASE_APP_ID }}
