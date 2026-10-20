@@ -48,8 +48,8 @@ conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
 | Workflow | Starts on | Does |
 |----------|-----------|------|
 | `ci.yml` | pull request | commit-message check, then `checks.yml` |
-| `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then `github-tag-release` (release-please, from `github-actions-shared`) |
-| `pypi-release.yml` | a GitHub Release is published | calls `python-pypi-publish` (from `github-actions-shared`) to build the tag and publish it to PyPI |
+| `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then `github-tag-release` (release-please, from `github-actions-shared`). It skips the checks for the release PR's own merge commit and only tags the release |
+| `pypi-release.yml` | a GitHub Release is published | uses the `python-pypi-publish` action (from `github-actions-shared`) to build the tag and publish it to PyPI |
 
 1. Each push to `main` updates a release PR that bumps the version in
    `pyproject.toml` and writes `CHANGELOG.md`.
