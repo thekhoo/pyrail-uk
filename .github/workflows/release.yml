@@ -16,12 +16,47 @@ jobs:
       use-pyrefly: true
       test-directories: "tests/"
 
-  deploy:
-    name: Deploy to PyPi
+  release-please:
+    name: Release Please
     needs: ci
-    # the reusable workflow's jobs request these; a caller on the default read-only
-    # token fails at startup if it does not grant at least as much
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      # The app token (not GITHUB_TOKEN) lets the release PR trigger CI and pass the ruleset.
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  publish:
+    name: Publish to PyPI
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    # must match the environment configured on the PyPI trusted publisher
+    environment: production
     permissions:
-      contents: write
+      contents: read
       id-token: write
-    uses: thekhoo/github-actions-shared/.github/workflows/python-pypi-deploy.yml@main
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Build
+        run: uv build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
