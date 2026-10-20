@@ -45,13 +45,22 @@ or no actuals for a cancelled call) become `None`.
 Releases use [release-please](https://github.com/googleapis/release-please). Use
 conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
 
+| Workflow | Starts on | Does |
+|----------|-----------|------|
+| `ci.yml` | pull request | commit-message check, then `checks.yml` |
+| `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then release-please |
+| `publish.yml` | a GitHub Release is published | builds the tag and publishes it to PyPI |
+
 1. Each push to `main` updates a release PR that bumps the version in
    `pyproject.toml` and writes `CHANGELOG.md`.
-2. Merge the release PR when you want to release. This tags the release and
+2. Merge the release PR when you want to release. release-please tags the release and
    creates the GitHub Release.
-3. The `Publish to PyPI` job then builds the tag and publishes it.
+3. `publish.yml` starts from that release. To publish a tag again, run `Publish` by
+   hand and enter the tag.
 
-The workflow signs in as the `thekhoo-actions-writer-agent` GitHub App, using the
+The PyPI trusted publisher must name the workflow `publish.yml` and the environment
+`production`.
+
+The workflows sign in as the `thekhoo-actions-writer-agent` GitHub App, using the
 secret `RELEASE_APP_PRIVATE_KEY` and the variable `RELEASE_APP_ID`. See
 `docs/release-app-setup.md` in `thekhoo/github-actions-shared`.
-
