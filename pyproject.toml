@@ -59,14 +59,3 @@ project-includes=["pyrail_uk/**/*.py"]
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
-
-[tool.semantic_release]
-branch = "main"
-tag_format = "v{version}"
-commit = false
-push = false
-version_toml = ["pyproject.toml:project.version"]
-build_command = "pip install uv && uv build"
-
-[tool.semantic_release.changelog]
-generate = false

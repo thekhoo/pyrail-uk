@@ -39,3 +39,29 @@ An easier way to deal with the National Rail API
 `HistoricServiceClient.get_service_details(rid)` returns a `ServiceDetailsResponse`.
 Times are `datetime.time`; blank values from the API (e.g. no arrival at the origin,
 or no actuals for a cancelled call) become `None`.
+
+## Releasing
+
+Releases use [release-please](https://github.com/googleapis/release-please). Use
+conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
+
+| Workflow | Starts on | Does |
+|----------|-----------|------|
+| `ci.yml` | pull request | commit-message check, then `checks.yml` |
+| `release.yml` | push to `main` | `checks.yml` (the same checks as CI), then `github-tag-release` (release-please, from `github-actions-shared`) |
+| `pypi-release.yml` | a GitHub Release is published | calls `python-pypi-publish` (from `github-actions-shared`) to build the tag and publish it to PyPI |
+
+1. Each push to `main` updates a release PR that bumps the version in
+   `pyproject.toml` and writes `CHANGELOG.md`.
+2. The release PR turns on auto-merge, so it merges once its required checks and review
+   rules are met. release-please then tags the release and creates the GitHub Release.
+   (To release by hand instead, remove `auto-merge: true` from `release.yml`.)
+3. `pypi-release.yml` starts from that release. To publish a tag again, run `PyPI Release` by
+   hand and enter the tag.
+
+The PyPI trusted publisher must name the workflow `pypi-release.yml` and the environment
+`production`.
+
+The workflows sign in as the `thekhoo-actions-writer-agent` GitHub App, using the
+secret `RELEASE_APP_PRIVATE_KEY` and the variable `RELEASE_APP_ID`. See
+`docs/release-app-setup.md` in `thekhoo/github-actions-shared`.

@@ -1,27 +1,23 @@
 name: Release
 
+# On merge to main: run the same checks as CI, then github-tag-release (release-please)
+# updates the release PR. When that PR is merged, it tags the release and creates the
+# GitHub Release. pypi-release.yml starts from that release.
 on:
   push:
     branches: [main]
 
 jobs:
-  ci:
-    name: CI
-    uses: thekhoo/github-actions-shared/.github/workflows/python-ci.yml@main
-    with:
-      linting-python-version: "3.13"
-      pytest-python-versions: '["3.11", "3.12", "3.13", "3.14"]'
-      lint-directories: "pyrail_uk/ tests/"
-      use-ruff: true
-      use-pyrefly: true
-      test-directories: "tests/"
+  checks:
+    name: Main
+    uses: ./.github/workflows/checks.yml
 
-  deploy:
-    name: Deploy to PyPi
-    needs: ci
-    # the reusable workflow's jobs request these; a caller on the default read-only
-    # token fails at startup if it does not grant at least as much
-    permissions:
-      contents: write
-      id-token: write
-    uses: thekhoo/github-actions-shared/.github/workflows/python-pypi-deploy.yml@main
+  tag-release:
+    name: Tag Release
+    needs: checks
+    uses: thekhoo/github-actions-shared/.github/workflows/github-tag-release.yml@main
+    with:
+      app-id: ${{ vars.RELEASE_APP_ID }}
+      auto-merge: true
+    secrets:
+      private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}

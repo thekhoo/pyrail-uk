@@ -15,28 +15,6 @@ jobs:
           fetch-depth: 0
       - uses: webiny/action-conventional-commits@v1.3.0
 
-  lint:
-    name: PR Linting
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Python quality checks
-        uses: thekhoo/github-actions-shared/.github/actions/python-linting@main
-        with:
-          python-version: 3.13
-          directories: pyrail_uk/ tests/
-          use-ruff: true
-          use-pyrefly: true
-
-  test:
-    name: PR Unit Tests
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.13", "3.14"]
-    steps:
-      - name: Run Python quality checks
-        uses: thekhoo/github-actions-shared/.github/actions/python-pytest@main
-        with:
-          python-version: ${{ matrix.python-version }}
-          test-directories: tests/
+  checks:
+    name: PR
+    uses: ./.github/workflows/checks.yml

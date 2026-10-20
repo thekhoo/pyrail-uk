@@ -1,0 +1,18 @@
+name: Checks
+
+# The one definition of "the checks". CI (pull requests) and Release (main) both call it,
+# so a change that passes on a pull request is tested the same way after merge.
+on:
+  workflow_call:
+
+jobs:
+  checks:
+    name: Checks
+    uses: thekhoo/github-actions-shared/.github/workflows/python-ci.yml@main
+    with:
+      linting-python-version: "3.13"
+      pytest-python-versions: '["3.11", "3.12", "3.13", "3.14"]'
+      lint-directories: "pyrail_uk/ tests/"
+      use-ruff: true
+      use-pyrefly: true
+      test-directories: "tests/"
