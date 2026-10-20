@@ -60,7 +60,7 @@ board = DepartureBoardClient(token=os.environ["NATIONAL_RAIL_TOKEN"])
 
 result = board.get_trains("EUS", "MAN")
 for train in result.services:
-    print(train.std, train.destination, train.status, train.departure_mins_delayed)
+    print(train.std, train.train_destination, train.status, train.departure_mins_delayed)
 ```
 
 `get_trains(dep_crs, arr_crs=None, timeoffset_mins=0, timewindow_mins=120)` returns a
