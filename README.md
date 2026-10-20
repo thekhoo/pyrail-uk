@@ -39,3 +39,19 @@ An easier way to deal with the National Rail API
 `HistoricServiceClient.get_service_details(rid)` returns a `ServiceDetailsResponse`.
 Times are `datetime.time`; blank values from the API (e.g. no arrival at the origin,
 or no actuals for a cancelled call) become `None`.
+
+## Releasing
+
+Releases use [release-please](https://github.com/googleapis/release-please). Use
+conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
+
+1. Each push to `main` updates a release PR that bumps the version in
+   `pyproject.toml` and writes `CHANGELOG.md`.
+2. Merge the release PR when you want to release. This tags the release and
+   creates the GitHub Release.
+3. The `Publish to PyPI` job then builds the tag and publishes it.
+
+The workflow signs in as the `thekhoo-actions-writer-agent` GitHub App, using the
+secret `RELEASE_APP_PRIVATE_KEY` and the variable `RELEASE_APP_ID`. See
+`docs/release-app-setup.md` in `thekhoo/github-actions-shared`.
+
