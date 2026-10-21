@@ -30,7 +30,9 @@ def test_api_client_sends_headers_and_gets_full_urls():
         def get(self, url, timeout=None):
             self.called = (url, timeout)
             return type(
-                "R", (), {"raise_for_status": lambda s: None, "json": lambda s: {"a": 1}}
+                "R",
+                (),
+                {"raise_for_status": lambda s: None, "json": lambda s: {"a": 1}},
             )()
 
     client = APIClient("token", headers={"x-apikey": "token"})

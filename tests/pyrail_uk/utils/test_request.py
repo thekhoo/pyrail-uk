@@ -4,6 +4,7 @@ from collections.abc import Iterator
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import pytest
+from requests.adapters import HTTPAdapter
 from requests.exceptions import HTTPError, RetryError
 from urllib3.util import Retry
 
@@ -47,7 +48,7 @@ class StubServer:
 
             do_GET = do_POST = _handle
 
-            def log_message(self, *args) -> None:
+            def log_message(self, format: str, *args) -> None:
                 pass
 
         self.httpd = HTTPServer(("127.0.0.1", 0), Handler)
@@ -76,14 +77,19 @@ def stub_server() -> Iterator[type[StubServer]]:
 def test_default_retry_strategy_covers_429_and_5xx_for_get_and_post():
     assert 429 in DEFAULT_RETRY_STRATEGY.status_forcelist
     assert {500, 502, 503, 504} <= set(DEFAULT_RETRY_STRATEGY.status_forcelist)
-    assert {"GET", "POST"} <= set(DEFAULT_RETRY_STRATEGY.allowed_methods)
+    allowed_methods = DEFAULT_RETRY_STRATEGY.allowed_methods
+    assert allowed_methods is not None
+    assert {"GET", "POST"} <= set(allowed_methods)
 
 
 def test_default_client_mounts_the_default_retry_strategy():
     client = BaseRequestClient("https://example.com")
 
     adapter = client.session.get_adapter("https://example.com")
-    assert adapter.max_retries.status_forcelist == DEFAULT_RETRY_STRATEGY.status_forcelist
+    assert isinstance(adapter, HTTPAdapter)
+    assert (
+        adapter.max_retries.status_forcelist == DEFAULT_RETRY_STRATEGY.status_forcelist
+    )
 
 
 def test_get_joins_base_url_and_path_and_sends_headers(stub_server):
