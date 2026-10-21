@@ -193,7 +193,8 @@ conventional commits (`feat:`, `fix:`, `ci:`, ...) on `main`.
 | `pypi-release.yml` | a GitHub Release is published | uses the `python-pypi-publish` action (from `github-actions-shared`) to build the tag and publish it to PyPI |
 
 1. Each push to `main` updates a release PR that bumps the version in
-   `pyproject.toml` and writes `CHANGELOG.md`.
+   `pyproject.toml` and in the `pyrail-uk` entry of `uv.lock`, and writes `CHANGELOG.md`.
+   The `extra-files` entry in `release-please-config.json` keeps `uv.lock` in step.
 2. The release PR turns on auto-merge, so it merges once its required checks and review
    rules are met. release-please then tags the release and creates the GitHub Release.
    (To release by hand instead, remove `auto-merge: true` from `release.yml`.)
