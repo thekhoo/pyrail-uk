@@ -54,7 +54,7 @@ include = ["pyrail_uk/**/*.py"]
 ignore = ["N999"]
 
 [tool.pyrefly]
-project-includes=["pyrail_uk/**/*.py"]
+project-includes=["pyrail_uk/**/*.py", "tests/**/*.py"]
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
